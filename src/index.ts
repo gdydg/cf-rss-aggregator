@@ -72,7 +72,7 @@ async function handleApiGroup(request: Request, env: Env, group: GroupName): Pro
 	if (request.method !== "GET") return methodNotAllowed(env);
 	const url = new URL(request.url);
 	const limitParam = Number.parseInt(url.searchParams.get("limit") || "", 10);
-	const limit = Number.isFinite(limitParam) && limitParam > 0 ? limitParam : 50;
+	const limit = Number.isFinite(limitParam) && limitParam > 0 ? limitParam : 100;
 	const format = (url.searchParams.get("format") || "json").toLowerCase();
 	const fresh = url.searchParams.get("fresh") === "1";
 	if (format !== "json") return errorJSON("Unsupported format", 400, env);
@@ -180,7 +180,7 @@ export default {
 		const cacheTtl = getNumberFromEnv(env as any, "CACHE_TTL_SECONDS", 900);
 		for (const group of groups) {
 			try {
-				const result = await aggregateGroupItems(config, group, env, 50);
+				const result = await aggregateGroupItems(config, group, env, 100);
 				await setGroupCache(env.FEEDS_KV, group, result, cacheTtl);
 			} catch {
 				// ignore errors during prewarm
