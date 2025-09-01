@@ -7,7 +7,7 @@ crons = [ "*/5 * * * *" ]
 
 [[kv_namespaces]]
 binding = "FEEDS_KV"
-id = "ab511a30b6d847958238ab6904c467c2"
+id = "99ee2739b0174ea38bb9cc1247a29776"
 preview_id = "11111111111111111111111111111111"
 
 [vars]
